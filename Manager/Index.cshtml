@@ -1,0 +1,37 @@
+﻿@model  IEnumerable<musicshop.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <br>
+    <br>
+@using (Html.BeginForm("Search", "Manager", FormMethod.Get))
+{
+    <input type="text" name="parameter" placeholder="Artist Name" />
+    <input type="submit" value="search" />
+}
+<br>
+<br>
+@Html.ActionLink("Create Album", "Create", new { id = 2})
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Release Year</th>
+        <th>Photo</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Title</td>
+    <td>@item.Price</td>
+    <td>@item.ReleaseYear</td>
+    <td>@item.AlbumUrl</td>
+    <td>@Html.ActionLink("Edit", "Edit", new { id = item.AlbumId })</td>
+</tr>
+    }
+
+</table>
+

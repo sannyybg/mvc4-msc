@@ -1,0 +1,91 @@
+﻿@model musicshop.Models.Album
+
+@{
+    ViewBag.Title = "Crate New";
+
+    var genres = (SelectList)ViewBag.GenreId;
+    var artists = (SelectList)ViewBag.ArtistId;
+
+}
+
+<h2>Create New Album</h2>
+
+
+@using (Html.BeginForm("CreateAdd", "Manager", FormMethod.Post))
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Artist</label>
+            <div class="col-md-10">
+                <select class="form-control" id="ArtistId" name="ArtistId">
+                    @foreach (var item in artists)
+                    {
+                        if (item.Text == Model.Artist.Name)
+                        {
+                            <option selected="selected" value="@item.Value">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Genre</label>
+            <div class="col-md-10">
+                <select class="form-control" id="GenreId" name="GenreId">
+                    @foreach (var item in genres)
+                    {
+                        if (item.Text == Model.Genre.Name)
+                        {
+                            <option selected="selected" value="@item.Value">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Price</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="Price" value="@Model.Price" ? />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Title</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="Title" value="@Model.Title" ? />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">URL</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="AlbumUrl" value="@Model.AlbumUrl" ? />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">RelYEar</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="ReleaseYear" value="@Model.ReleaseYear" ? />
+            </div>
+        </div>
+        <input id="AlbumId" name="AlbumId" type="hidden" value="@Model.AlbumId" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+
+}
+<br>
+@Html.ActionLink("Back", "Index")
+
+
+
